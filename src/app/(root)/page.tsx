@@ -4,7 +4,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { dummyInterviews } from '../../../constants';
 import InterviewCard from '@/components/InterviewCard';
-
+export const dynamic = 'force-dynamic';
 export default function Home() {
   return (
     <>
