@@ -1,6 +1,8 @@
 import Agent from '@/components/Agent';
 import React from 'react';
 
+export const dynamic = 'force-dynamic';
+
 const page = () => {
   return (
     <>
