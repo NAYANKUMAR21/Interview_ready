@@ -19,6 +19,14 @@ const nextConfig: NextConfig = {
     NEXT_PUBILIC_CLIENT_MEASUREMENT:
       process.env.NEXT_PUBILIC_CLIENT_MEASUREMENT,
   },
+  images: {
+    remotePatterns: [
+      {
+        protocol: 'https',
+        hostname: 'png.pngtree.com',
+      },
+    ],
+  },
 };
 
 export default nextConfig;

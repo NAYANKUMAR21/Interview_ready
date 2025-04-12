@@ -203,13 +203,13 @@ const Agent = ({
 
             <span className="relative">
               {callStatus === 'INACTIVE' || callStatus === 'FINISHED'
-                ? 'Call'
+                ? 'Call 📞'
                 : '. . .'}
             </span>
           </button>
         ) : (
           <button className="btn-disconnect" onClick={() => handleDisconnect()}>
-            End
+            End ☎️
           </button>
         )}
       </div>

@@ -101,16 +101,16 @@ const AuthForm = ({ type }: { type: FormType }) => {
     <div className="card-border lg:min-w-[566px]">
       <div className="flex flex-col gap-6 card py-14 px-10">
         <div className="flex flex-row gap-2 justify-center">
-          <Image src="/logo.svg" alt="logo" height={32} width={38} />
+          <Image src="/logo.png" alt="logo" height={32} width={38} />
           <h2 className="text-primary-100">PrepWise</h2>
         </div>
 
-        <h3>Practice interviews with AI</h3>
+        <h3 className="text-white">Practice interviews with AI</h3>
 
         <Form {...form}>
           <form
             onSubmit={form.handleSubmit(onSubmit)}
-            className="w-full space-y-6 mt-4 form"
+            className="w-full space-y-6 mt-4 form text-white"
           >
             {!isSignIn && (
               <FormField

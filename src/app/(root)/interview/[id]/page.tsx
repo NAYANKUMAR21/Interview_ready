@@ -17,24 +17,27 @@ const page = async ({ params }: RouteParams) => {
   const user = await getCurrentUser();
   return (
     <>
-      <div className="flex flex-row gap-4 justify-between">
-        <div className="flex flex-row gap-4 items-center max-sm:flex-col">
-          <div className="flex flex-row gap-4 items-center">
+      <div className="flex flex-row justify-between items-start gap-6 p-4 rounded-2xl bg-gradient-to-r from-slate-800 to-slate-700 shadow-md max-sm:flex-col max-sm:gap-4">
+        <div className="flex flex-row items-center gap-6 max-sm:flex-col max-sm:items-start">
+          <div className="flex flex-row items-center gap-4">
             <Image
               src={getRandomInterviewCover()}
               alt="Interview Cover"
               height={40}
               width={40}
-              className="rounded-xl object-cover size-[40px]"
+              className="rounded-xl object-cover size-[40px] shadow-sm"
             />
-            <h3 className="capitalize ">{Interview.role} Interview</h3>
+            <h3 className="text-lg font-semibold text-white capitalize">
+              {Interview.role} Interview
+            </h3>
             <DisplayTechIcons techStack={Interview.techstack} />
           </div>
-          <p className="bg-dark-200 px-4py2 rounded-lg h-fit capitalize">
+          <p className="bg-slate-600 text-slate-100 px-5 py-2 text-sm rounded-full capitalize shadow-sm">
             {Interview.type}
           </p>
         </div>
       </div>
+
       <Agent
         userName={user?.name!}
         userId={user?.id}

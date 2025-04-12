@@ -2,7 +2,7 @@ import { Button } from '@/components/ui/button';
 import Image from 'next/image';
 
 import Link from 'next/link';
-import { dummyInterviews } from '../../../constants';
+
 import InterviewCard from '@/components/InterviewCard';
 import { getCurrentUser } from '@/lib/actions/auth.actions';
 import {
@@ -23,28 +23,33 @@ export default async function Home() {
 
   return (
     <>
-      <section className="card-cta">
-        <div className="flex flex-col gap-6 max-w-lg">
-          <h2>Get interview Ready</h2>
-          <p className="text-lg">
-            Practice on real Interview Questions & Get Feedback
+      <section className="card-cta bg-gradient-to-r from-sky-900 via-indigo-900 to-purple-900 text-white px-6 py-10 rounded-2xl shadow-lg flex flex-col-reverse sm:flex-row items-center justify-between gap-10">
+        <div className="flex flex-col gap-4 max-w-lg">
+          <h2 className="text-3xl font-semibold">Interview Ready..</h2>
+          <p className="text-lg text-slate-200">
+            Practice real interview questions and receive feedback to improve.
           </p>
-          <Button asChild className="btn-primary max-sm:w-full">
-            <Link href="/interview">Start an Interview</Link>
+          <Button
+            asChild
+            className="btn-primary bg-purple-600 hover:bg-purple-700 text-white px-6 py-2 max-sm:w-full"
+          >
+            <Link href="/interview">Start a New Interview</Link>
           </Button>
         </div>
         <Image
-          src="/robot.png"
-          width={400}
-          height={400}
+          src="https://png.pngtree.com/png-clipart/20250103/original/pngtree-futuristic-robot-using-laptop-cartoon-vector-artwork-png-image_20059325.png"
+          width={300}
+          height={300}
           className="max-sm:hidden"
-          alt="header image robot"
+          alt="Robot ready for interview"
         />
       </section>
-      <section className="flex flex-col gap-6 mt-8">
-        <h2>Your Interviews</h2>
 
-        <div className="interviews-section">
+      <section className="flex flex-col gap-6 mt-12">
+        <h2 className="text-2xl font-semibold text-slate-800 dark:text-white">
+          Your Interviews
+        </h2>
+        <div className="interviews-section grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
           {hasPastInterview ? (
             userInterviews?.map((interview) => (
               <InterviewCard
@@ -58,13 +63,18 @@ export default async function Home() {
               />
             ))
           ) : (
-            <p>You haven&apos;t taken any interview yet</p>
+            <p className="text-gray-500 italic">
+              You haven&apos;t taken any interview yet.
+            </p>
           )}
         </div>
       </section>
-      <section className="flex flex-col gap-6 mt-8">
-        <h2>Take an interview</h2>
-        <div className="interviews-section">
+
+      <section className="flex flex-col gap-6 mt-12">
+        <h2 className="text-2xl font-semibold text-slate-800 dark:text-white">
+          Take an Interview
+        </h2>
+        <div className="interviews-section grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
           {hasUpcomingInterview ? (
             latestInterviews?.map((interview) => (
               <InterviewCard
@@ -78,7 +88,9 @@ export default async function Home() {
               />
             ))
           ) : (
-            <p>There are no new interviews avialable</p>
+            <p className="text-gray-500 italic">
+              There are no new interviews available.
+            </p>
           )}
         </div>
       </section>

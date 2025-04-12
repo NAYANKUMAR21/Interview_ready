@@ -2,6 +2,7 @@ import type { Metadata } from 'next';
 import { Mona_Sans } from 'next/font/google';
 import './globals.css';
 import { Toaster } from 'sonner';
+import Footer from '@/components/Footer';
 
 const monoSans = Mona_Sans({
   variable: '--font-mona-sans',
@@ -19,13 +20,14 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className="dark">
+    <html lang="en" className="">
       <body
         className={`${monoSans.className} antialiased pattern`}
         suppressHydrationWarning
       >
         {children}
         <Toaster />
+        <Footer />
       </body>
     </html>
   );
