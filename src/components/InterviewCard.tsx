@@ -6,24 +6,27 @@ import { Button } from './ui/button';
 import DisplayTechIcons from './DisplayTechIcons';
 
 import { cn, getRandomInterviewCover } from '@/lib/utils';
+import { getFeedbackInterviewId } from '@/lib/actions/general.actions';
 // import { getFeedbackByInterviewId } from '@/lib/actions/general.action';
 
 const InterviewCard = async ({
-  interviewId,
+  id,
   userId,
   role,
   type,
   techstack,
   createdAt,
 }: InterviewCardProps) => {
-  const feedback = { createdAt: null, totalScore: 0, finalAssessment: false };
-  // userId && interviewId
-  //   ? await getFeedbackByInterviewId({
-  //       interviewId,
-  //       userId,
-  //     })
-  //   : null;
+  console.log(id, userId, role, type, techstack, createdAt);
+  let feedback = null;
+  if (userId && id) {
+    feedback = await getFeedbackInterviewId({
+      interviewId: id,
+      userId,
+    });
+  }
 
+  console.log(feedback);
   const normalizedType = /mix/gi.test(type) ? 'Mixed' : type;
 
   const badgeColor =
@@ -93,11 +96,7 @@ const InterviewCard = async ({
 
           <Button className="btn-primary">
             <Link
-              href={
-                feedback
-                  ? `/interview/${interviewId}/feedback`
-                  : `/interview/${interviewId}`
-              }
+              href={feedback ? `/interview/${id}/feedback` : `/interview/${id}`}
             >
               {feedback ? 'Check Feedback' : 'View Interview'}
             </Link>

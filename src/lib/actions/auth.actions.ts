@@ -88,8 +88,9 @@ export async function getCurrentUser(): Promise<User | null> {
     if (!userRecord.exists) {
       return null;
     }
+    // console.log('userRecord', userRecord);
     return {
-      ...userRecord.data,
+      ...userRecord.data(),
       id: userRecord.id,
     } as User;
   } catch (er) {
