@@ -98,19 +98,26 @@ const AuthForm = ({ type }: { type: FormType }) => {
   const isSignIn = type === 'sign-in';
 
   return (
-    <div className="card-border lg:min-w-[566px]">
-      <div className="flex flex-col gap-6 card py-14 px-10">
-        <div className="flex flex-row gap-2 justify-center">
+    <div className="border border-white/10 rounded-2xl lg:min-w-[566px] bg-gradient-to-br from-[#1F2937] via-[#111827] to-[#0F172A]">
+      <div className="flex flex-col gap-8 bg-white/10 backdrop-blur-md rounded-2xl shadow-xl py-14 px-10">
+        {/* Logo and Title */}
+        <div className="flex flex-row gap-2 justify-center items-center">
           <Image src="/logo.png" alt="logo" height={32} width={38} />
-          <h2 className="text-primary-100">PrepWise</h2>
+          <h2 className="text-primary-100 text-2xl font-semibold tracking-wide">
+            PrepWise
+          </h2>
         </div>
 
-        <h3 className="text-white">Practice interviews with AI</h3>
+        {/* Subtitle */}
+        <h3 className="text-white text-lg text-center font-medium">
+          Practice interviews with AI
+        </h3>
 
+        {/* Form */}
         <Form {...form}>
           <form
             onSubmit={form.handleSubmit(onSubmit)}
-            className="w-full space-y-6 mt-4 form text-white"
+            className="w-full space-y-6 mt-4 text-black"
           >
             {!isSignIn && (
               <FormField
@@ -119,6 +126,7 @@ const AuthForm = ({ type }: { type: FormType }) => {
                 label="Name"
                 placeholder="Your Name"
                 type="text"
+                // className="bg-white/10 border border-white/20 text-white placeholder-white/60 rounded-lg p-3 w-full focus:outline-none focus:ring-2 focus:ring-primary-400"
               />
             )}
 
@@ -128,6 +136,7 @@ const AuthForm = ({ type }: { type: FormType }) => {
               label="Email"
               placeholder="Your email address"
               type="email"
+              // className="bg-white/10 border border-white/20 text-white placeholder-white/60 rounded-lg p-3 w-full focus:outline-none focus:ring-2 focus:ring-primary-400"
             />
 
             <FormField
@@ -136,19 +145,25 @@ const AuthForm = ({ type }: { type: FormType }) => {
               label="Password"
               placeholder="Enter your password"
               type="password"
+              // className="bg-white/10 border border-white/20 text-white placeholder-white/60 rounded-lg p-3 w-full focus:outline-none focus:ring-2 focus:ring-primary-400"
             />
 
-            <Button className="btn" type="submit">
+            <Button
+              type="submit"
+              className="w-full py-3 px-6 bg-[#3B82F6] hover:bg-[#60A5FA] text-white rounded-xl font-medium transition-colors duration-200"
+            >
               {isSignIn ? 'Sign In' : 'Create an Account'}
             </Button>
           </form>
         </Form>
 
-        <p className="text-center">
+        {/* Toggle Link */}
+
+        <p className="text-center text-sm text-neutral-300">
           {isSignIn ? 'No account yet?' : 'Have an account already?'}
           <Link
             href={!isSignIn ? '/sign-in' : '/sign-up'}
-            className="font-bold text-user-primary ml-1"
+            className="font-bold text-primary-300 hover:underline ml-1"
           >
             {!isSignIn ? 'Sign In' : 'Sign Up'}
           </Link>
