@@ -19,6 +19,8 @@ import {
 } from 'firebase/auth';
 import { signIn, signUp } from '../lib/actions/auth.actions';
 import { auth } from '../../firebase/client';
+import { useState } from 'react';
+import Spinner from './Spinner';
 
 const authFormSchema = (type: FormType) => {
   return z.object({
@@ -104,20 +106,20 @@ const AuthForm = ({ type }: { type: FormType }) => {
         <div className="flex flex-row gap-2 justify-center items-center">
           <Image src="/logo.png" alt="logo" height={32} width={38} />
           <h2 className="text-primary-100 text-2xl font-semibold tracking-wide">
-            PrepWise
+            MockMate
           </h2>
         </div>
 
         {/* Subtitle */}
         <h3 className="text-white text-lg text-center font-medium">
-          Practice interviews with AI
+          Prepare for interviews with AI
         </h3>
 
         {/* Form */}
         <Form {...form}>
           <form
             onSubmit={form.handleSubmit(onSubmit)}
-            className="w-full space-y-6 mt-4 text-black"
+            className="w-full space-y-6 mt-4 text-white"
           >
             {!isSignIn && (
               <FormField
@@ -126,6 +128,7 @@ const AuthForm = ({ type }: { type: FormType }) => {
                 label="Name"
                 placeholder="Your Name"
                 type="text"
+
                 // className="bg-white/10 border border-white/20 text-white placeholder-white/60 rounded-lg p-3 w-full focus:outline-none focus:ring-2 focus:ring-primary-400"
               />
             )}

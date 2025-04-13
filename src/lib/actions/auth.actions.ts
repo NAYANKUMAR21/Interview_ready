@@ -103,3 +103,9 @@ export async function isAuthenticated() {
   const user = await getCurrentUser();
   return !!user; //same as if(user){return true}else{return false}
 }
+export async function Logout() {
+  const cookieStore = await cookies();
+
+  const check = cookieStore.delete('session');
+  console.log(check);
+}
