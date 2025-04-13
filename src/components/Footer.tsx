@@ -29,7 +29,7 @@ const Footer = () => {
 
         {/* Right: Copyright */}
         <div className="text-center sm:text-right text-slate-500 text-sm">
-          &copy; {new Date().getFullYear()} YourAppName. All rights reserved.
+          &copy; {new Date().getFullYear()} MockMate. All rights reserved.
         </div>
       </div>
     </footer>
