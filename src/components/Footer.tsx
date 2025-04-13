@@ -9,7 +9,12 @@ const Footer = () => {
         <div className="text-center sm:text-left">
           <h2 className="text-xl font-semibold text-slate-800">MockMate</h2>
           <p className="text-slate-600 text-sm">Get Ready for interview </p>
-          <p className="text-slate-600 text-sm">Developed by Nayan Kumar</p>
+          <p className="text-slate-600 text-sm">
+            Developed by{' '}
+            <Link href="https://www.linkedin.com/in/nayan-kumar-/">
+              Nayan Kumar
+            </Link>
+          </p>
         </div>
 
         {/* Center: Links */}
