@@ -38,7 +38,7 @@ export default async function Home() {
           </Button>
         </div>
         <Image
-          src="https://png.pngtree.com/png-clipart/20250103/original/pngtree-futuristic-robot-using-laptop-cartoon-vector-artwork-png-image_20059325.png"
+          src="/Futuristic Robot Laptop Cartoon.png"
           width={300}
           height={300}
           className="max-sm:hidden"
