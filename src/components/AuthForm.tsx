@@ -1,30 +1,30 @@
-'use client';
+"use client";
 
-import { z } from 'zod';
-import Link from 'next/link';
-import Image from 'next/image';
-import { toast } from 'sonner';
+import { z } from "zod";
+import Link from "next/link";
+import Image from "next/image";
+import { toast } from "sonner";
 
-import { useForm } from 'react-hook-form';
-import { useRouter } from 'next/navigation';
-import { zodResolver } from '@hookform/resolvers/zod';
+import { useForm } from "react-hook-form";
+import { useRouter } from "next/navigation";
+import { zodResolver } from "@hookform/resolvers/zod";
 
-import { Form } from '@/components/ui/form';
-import { Button } from '@/components/ui/button';
+import { Form } from "@/components/ui/form";
+import { Button } from "@/components/ui/button";
 
-import FormField from './FormField';
+import FormField from "./FormField";
 import {
   createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
-} from 'firebase/auth';
-import { signIn, signUp } from '../lib/actions/auth.actions';
-import { auth } from '../../firebase/client';
-import { useState } from 'react';
-import Spinner from './Spinner';
+} from "firebase/auth";
+import { signIn, signUp } from "../lib/actions/auth.actions";
+import { auth } from "../../firebase/client";
+import { useState } from "react";
+import Spinner from "./Spinner";
 
 const authFormSchema = (type: FormType) => {
   return z.object({
-    name: type === 'sign-up' ? z.string().min(3) : z.string().optional(),
+    name: type === "sign-up" ? z.string().min(3) : z.string().optional(),
     email: z.string().email(),
     password: z.string().min(3),
   });
@@ -37,15 +37,15 @@ const AuthForm = ({ type }: { type: FormType }) => {
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
-      name: '',
-      email: '',
-      password: '',
+      name: "",
+      email: "",
+      password: "",
     },
   });
 
   const onSubmit = async (data: z.infer<typeof formSchema>) => {
     try {
-      if (type === 'sign-up') {
+      if (type === "sign-up") {
         const { name, email, password } = data;
 
         const userCredential = await createUserWithEmailAndPassword(
@@ -66,8 +66,8 @@ const AuthForm = ({ type }: { type: FormType }) => {
           return;
         }
 
-        toast.success('Account created successfully. Please sign in.');
-        router.push('/sign-in');
+        toast.success("Account created successfully. Please sign in.");
+        router.push("/sign-in");
       } else {
         const { email, password } = data;
 
@@ -79,7 +79,7 @@ const AuthForm = ({ type }: { type: FormType }) => {
 
         const idToken = await userCredential.user.getIdToken();
         if (!idToken) {
-          toast.error('Sign in Failed. Please try again.');
+          toast.error("Sign in Failed. Please try again.");
           return;
         }
 
@@ -88,8 +88,8 @@ const AuthForm = ({ type }: { type: FormType }) => {
           idToken,
         });
 
-        toast.success('Signed in successfully.');
-        router.push('/');
+        toast.success("Signed in successfully.");
+        router.push("/");
       }
     } catch (error) {
       console.log(error);
@@ -97,29 +97,30 @@ const AuthForm = ({ type }: { type: FormType }) => {
     }
   };
 
-  const isSignIn = type === 'sign-in';
+  const isSignIn = type === "sign-in";
 
   return (
-    <div className="border border-white/10 rounded-2xl lg:min-w-[566px] bg-gradient-to-br from-[#1F2937] via-[#111827] to-[#0F172A]">
-      <div className="flex flex-col gap-8 bg-white/10 backdrop-blur-md rounded-2xl shadow-xl py-14 px-10">
+    <div className=" border border-green-200 rounded-2xl lg:min-w-[566px] bg-gradient-to-br p-1">
+      <div className="flex flex-col gap-8 bg-white rounded-2xl shadow-2xl py-14 px-10">
         {/* Logo and Title */}
         <div className="flex flex-row gap-2 justify-center items-center">
           <Image src="/logo.png" alt="logo" height={32} width={38} />
-          <h2 className="text-primary-100 text-2xl font-semibold tracking-wide">
+          <h2 className="text-3xl font-bold tracking-wide text-blue-600">
             MockMate
           </h2>
         </div>
 
         {/* Subtitle */}
-        <h3 className="text-white text-lg text-center font-medium">
-          Prepare for interviews with AI
+        <h3 className="text-gray-700 text-lg text-center font-medium">
+          Prepare for interviews with{" "}
+          <span className="text-blue-500 font-semibold">AI</span>
         </h3>
 
         {/* Form */}
         <Form {...form}>
           <form
             onSubmit={form.handleSubmit(onSubmit)}
-            className="w-full space-y-6 mt-4 text-white"
+            className="w-full space-y-6 mt-4 text-gray-800"
           >
             {!isSignIn && (
               <FormField
@@ -128,8 +129,6 @@ const AuthForm = ({ type }: { type: FormType }) => {
                 label="Name"
                 placeholder="Your Name"
                 type="text"
-
-                // className="bg-white/10 border border-white/20 text-white placeholder-white/60 rounded-lg p-3 w-full focus:outline-none focus:ring-2 focus:ring-primary-400"
               />
             )}
 
@@ -139,7 +138,6 @@ const AuthForm = ({ type }: { type: FormType }) => {
               label="Email"
               placeholder="Your email address"
               type="email"
-              // className="bg-white/10 border border-white/20 text-white placeholder-white/60 rounded-lg p-3 w-full focus:outline-none focus:ring-2 focus:ring-primary-400"
             />
 
             <FormField
@@ -148,27 +146,25 @@ const AuthForm = ({ type }: { type: FormType }) => {
               label="Password"
               placeholder="Enter your password"
               type="password"
-              // className="bg-white/10 border border-white/20 text-white placeholder-white/60 rounded-lg p-3 w-full focus:outline-none focus:ring-2 focus:ring-primary-400"
             />
 
             <Button
               type="submit"
-              className="w-full py-3 px-6 bg-[#3B82F6] hover:bg-[#60A5FA] text-white rounded-xl font-medium transition-colors duration-200"
+              className="w-full py-3 px-6 bg-gradient-to-r from-blue-500 via-indigo-500 to-purple-500 hover:from-blue-600 hover:via-indigo-600 hover:to-purple-600 text-white rounded-xl font-semibold transition-all duration-300"
             >
-              {isSignIn ? 'Sign In' : 'Create an Account'}
+              {isSignIn ? "Sign In" : "Create an Account"}
             </Button>
           </form>
         </Form>
 
         {/* Toggle Link */}
-
-        <p className="text-center text-sm text-neutral-300">
-          {isSignIn ? 'No account yet?' : 'Have an account already?'}
+        <p className="text-center text-sm text-gray-500">
+          {isSignIn ? "No account yet?" : "Have an account already?"}
           <Link
-            href={!isSignIn ? '/sign-in' : '/sign-up'}
-            className="font-bold text-primary-300 hover:underline ml-1"
+            href={!isSignIn ? "/sign-in" : "/sign-up"}
+            className="font-bold text-blue-500 hover:underline ml-1"
           >
-            {!isSignIn ? 'Sign In' : 'Sign Up'}
+            {!isSignIn ? "Sign In" : "Sign Up"}
           </Link>
         </p>
       </div>
